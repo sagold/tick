@@ -5,6 +5,10 @@ export type OnDebounceUpdate = (any) => void;
 export type OnDebounceEnd = (any) => void;
 
 
+/**
+ * Debounce multiple events, emitting updates by a fixed interval and receive
+ * an end-event, when no more updates are incoming
+ */
 class Debounce implements Loopable {
     active = false;
     arg?;
@@ -24,23 +28,27 @@ class Debounce implements Loopable {
     }
 
     /**
-     * Send the first event to start debouncer
-     * @param  {Mixed} arg  - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * start debouncing
+     * @param arg - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * @return this instance
      */
-    start(arg?) {
+    start(arg?): Debounce {
         this.update(arg);
         this.active = true;
         loop.add(this);
+        return this;
     }
 
     /**
-     * Send an update event
-     * @param  {Mixed} arg  - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * notify a change to keep debounce active (by resetting ttl)
+     * @param arg - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * @return this instance
      */
-    update(arg?) {
+    update(arg?): Debounce {
         this.updated = true;
         this.arg = arg ?? this.arg;
         this.lastUpdate = Date.now();
+        return this;
     }
 
     calculate(now: number) {

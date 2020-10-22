@@ -1,10 +1,9 @@
 {
   "name": "@sagold/tick",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Timing functions using a single raf-loop",
   "main": "dist/tick.js",
   "types": "dist/index.d.ts",
-  "module": "index.ts",
   "scripts": {
     "build": "rm -rf dev; webpack",
     "dist": "rm -rf dist; NODE_ENV=production webpack",
@@ -20,11 +19,11 @@
     "url": "ssh://git@github.com:sagold/tick.git"
   },
   "keywords": [
-    "request animation frame",
-    "raf",
-    "tick",
+    "debounce",
     "loop",
-    "debounce"
+    "performance",
+    "raf",
+    "requestanimationframe"
   ],
   "author": "",
   "license": "MIT",
@@ -38,11 +37,8 @@
     "eslint-plugin-node": "11.0.0",
     "eslint-plugin-optimize-regex": "1.1.7",
     "eslint-plugin-promise": "4.2.1",
-    "glob": "^7.1.6",
-    "image-size": "^0.8.3",
     "jsdom": "^16.4.0",
     "mocha": "7.1.0",
-    "node-fetch": "^2.6.0",
     "terser-webpack-plugin": "2.3.5",
     "ts-loader": "6.2.1",
     "ts-node": "8.6.2",
