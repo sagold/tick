@@ -4,7 +4,6 @@
   "description": "Timing functions using a single raf-loop",
   "main": "dist/tick.js",
   "types": "dist/index.d.ts",
-  "module": "index.ts",
   "scripts": {
     "build": "rm -rf dev; webpack",
     "dist": "rm -rf dist; NODE_ENV=production webpack",
@@ -20,11 +19,11 @@
     "url": "ssh://git@github.com:sagold/tick.git"
   },
   "keywords": [
-    "request animation frame",
-    "raf",
-    "tick",
+    "debounce",
     "loop",
-    "debounce"
+    "performance",
+    "raf",
+    "requestanimationframe"
   ],
   "author": "",
   "license": "MIT",
