@@ -1,6 +1,10 @@
 import { Loopable } from "./loop";
 export declare type OnDebounceUpdate = (any: any) => void;
 export declare type OnDebounceEnd = (any: any) => void;
+/**
+ * Debounce multiple events, emitting updates by a fixed interval and receive
+ * an end-event, when no more updates are incoming
+ */
 declare class Debounce implements Loopable {
     active: boolean;
     arg?: any;
@@ -13,15 +17,17 @@ declare class Debounce implements Loopable {
     updateInterval: number;
     constructor(onUpdate: OnDebounceUpdate, onEnd: OnDebounceEnd, updateInterval?: number, endTimeout?: number);
     /**
-     * Send the first event to start debouncer
-     * @param  {Mixed} arg  - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * start debouncing
+     * @param arg - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * @return this instance
      */
-    start(arg?: any): void;
+    start(arg?: any): Debounce;
     /**
-     * Send an update event
-     * @param  {Mixed} arg  - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * notify a change to keep debounce active (by resetting ttl)
+     * @param arg - you can pass an argument, which will be passed to onUpdate and onEnd events
+     * @return this instance
      */
-    update(arg?: any): void;
+    update(arg?: any): Debounce;
     calculate(now: number): boolean;
 }
 export default Debounce;
