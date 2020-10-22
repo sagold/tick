@@ -5,6 +5,10 @@ export type OnDebounceUpdate = (any) => void;
 export type OnDebounceEnd = (any) => void;
 
 
+/**
+ * Debounce multiple events, emitting updates by a fixed interval and receive
+ * an end-event, when no more updates are incoming
+ */
 class Debounce implements Loopable {
     active = false;
     arg?;
