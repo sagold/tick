@@ -4,6 +4,9 @@ import loop, { Loopable, EXIT, CONTINUE } from "./loop";
 export type OnTimeout = (now: number, timePassed: number) => void;
 
 
+/**
+ * Create a new lazy, reusable timeout
+ */
 class Timeout implements Loopable {
     lastUpdate: number;
     loopState: boolean = EXIT;
@@ -11,13 +14,21 @@ class Timeout implements Loopable {
     time: number;
     ttl: number;
 
+    /**
+     * @param onTimeout - called, when timeout has occured
+     * @param ttl - time to live in [ms]
+     */
     constructor(onTimeout: OnTimeout, ttl: number) {
         this.loopState = EXIT;
         this.ttl = ttl;
         this.sendTimeout = onTimeout;
     }
 
-    start() {
+    /**
+     * start or restart timeout
+     * @return this instance
+     */
+    start(): Timeout {
         this.keepAlive();
         if (this.isActive() === false) {
             this.loopState = CONTINUE;
@@ -26,11 +37,17 @@ class Timeout implements Loopable {
         return this;
     }
 
-    isActive() {
+    /**
+     * @return true, if timeout is currently active
+     */
+    isActive(): boolean {
         return this.loopState === CONTINUE;
     }
 
-    getTime() {
+    /**
+     * @return starting time of timeout in [ms]
+     */
+    getTime(): number {
         return this.lastUpdate;
     }
 
@@ -43,7 +60,11 @@ class Timeout implements Loopable {
         return this.loopState;
     }
 
-    keepAlive() {
+    /**
+     * reset lifetime of current active timeout
+     * @return new starting time of timeout in [ms]
+     */
+    keepAlive(): number {
         this.lastUpdate = Date.now();
         return this.lastUpdate;
     }
