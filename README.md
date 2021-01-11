@@ -138,3 +138,17 @@ debounce.update();
 // logs "end", after no more updates have been received within `ttl`
 ```
 
+
+## Examples
+
+### scroll-end event
+
+```js
+import { Timeout } from "@sagold/tick";
+
+const onScrollEnd = () => console.log("scroll end");
+const scrollTimer = new Timeout(onScrollEnd, 200);
+const onScroll = scrollTimer.start.bind(scrollTimer);
+window.addEventListener("scroll", onScroll);
+// logs "scroll end", when scrolling is idle longer than 200ms
+```

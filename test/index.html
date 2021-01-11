@@ -21,19 +21,26 @@
         <script type="text/javascript" src="../dist/tick.js"></script>
         <script type="text/javascript">
             console.log("window tick", window.tick);
-            const { loop } = window.tick;
+            const { loop, Timeout } = window.tick;
 
-            loop.add({
-                render: () => {},
-                calculate: () => {
-                    console.log("tick");
-                }
-            })
+            const onScrollEnd = () => console.log("scroll end");
+            const scrollTimer = new Timeout(onScrollEnd, 200);
+            const onScroll = scrollTimer.start.bind(scrollTimer);
+            window.addEventListener("scroll", onScroll);
+
+            // loop.add({
+            //     render: () => {},
+            //     calculate: () => {
+            //         console.log("tick");
+            //     }
+            // })
         </script>
 
     </head>
 
     <body>
+
+        <div id="scroll" style="height: 200vh;"></div>
 
     </body>
 
