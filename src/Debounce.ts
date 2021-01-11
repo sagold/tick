@@ -51,6 +51,13 @@ class Debounce implements Loopable {
         return this;
     }
 
+    /**
+     * @return true, if debounce is currently active
+     */
+    isActive(): boolean {
+        return this.active;
+    }
+
     calculate(now: number) {
         if (now - this.lastUpdate > this.endTimeout) {
             this.onEnd(this.arg);

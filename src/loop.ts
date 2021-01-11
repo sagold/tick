@@ -56,6 +56,13 @@ export class Loop {
         }
     }
 
+    /**
+     * @return true, if loop is currently active
+     */
+    isActive(): boolean {
+        return this.enabled;
+    }
+
     tick() {
         let i;
         const now = Date.now();
